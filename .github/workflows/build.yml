@@ -65,10 +65,10 @@ jobs:
         name: Check manifest
         if: github.event_name != 'pull_request'
         run: |
-          docker buildx imagetools inspect ${{ env.GHCR_SLUG }}:full
+          docker buildx imagetools inspect ${{ env.GHCR_SLUG }}:latest
       -
         name: Check pull
         if: github.event_name != 'pull_request'
         run: |
-          docker pull ${{ env.GHCR_SLUG }}:full
-          docker image inspect ${{ env.GHCR_SLUG }}:full
+          docker pull ${{ env.GHCR_SLUG }}:latest
+          docker image inspect ${{ env.GHCR_SLUG }}:latest
