@@ -59,9 +59,8 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: |
             ${{ env.GHCR_SLUG }}:latest          
-            ${{ env.GHCR_SLUG }}:full
           cache-from: |
-            ${{ env.GHCR_SLUG }}:full
+            ${{ env.GHCR_SLUG }}:latest
       -
         name: Check manifest
         if: github.event_name != 'pull_request'
