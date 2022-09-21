@@ -1,4 +1,4 @@
-FROM debian:bullseye-slim
+FROM debian:bullseye-slim as latest
 
 ARG php_version=8.1
 ARG app_user_id=1000
