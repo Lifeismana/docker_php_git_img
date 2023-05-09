@@ -1,6 +1,6 @@
 FROM debian:bullseye-slim as latest
 
-ARG php_version=8.1
+ARG php_version=8.2
 ARG app_user_id=1000
 ARG app_group_id=1000
 
@@ -16,12 +16,16 @@ RUN set -eux; \
     apt-get clean
 
 RUN apt-get update;  \
-    apt-get -y install \
+    apt-get -y --no-install-recommends install \
+    nodejs \
+    npm \
     php${PHP_VERSION}-cli \
     php${PHP_VERSION}-curl \
     php${PHP_VERSION}-zip \
     ; \
-    apt-get clean
+    apt-get clean; \
+    rm -rf /var/lib/apt/lists/*; \
+    npm install prettier -g;
 
 RUN set -eux; \
     echo "error_log = /var/log/php_cli_errors.log" >> /etc/php/${PHP_VERSION}/cli/php.ini; \
